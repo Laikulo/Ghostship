@@ -1,0 +1,4 @@
+config BR2_PACKAGE_PYTHON_POETRY_CORE
+	bool "python-poetry-core"
+	help
+	  poetry core

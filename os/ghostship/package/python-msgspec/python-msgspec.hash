@@ -1,0 +1,5 @@
+# md5, sha256 from https://pypi.org/pypi/msgspec/json
+md5  ec930e0f077a057efeb9528e1e54b1e7  msgspec-0.18.4.tar.gz
+sha256  cb62030bd6b1a00b01a2fcb09735016011696304e6b1d3321e58022548268d3e  msgspec-0.18.4.tar.gz
+# Locally computed sha256 checksums
+sha256  6fde8b6723885e8508808f65ac372feb97d3eee2eab2b91d34d796b75b7ac734  LICENSE

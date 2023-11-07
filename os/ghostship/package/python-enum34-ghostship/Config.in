@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_ENUM34_GHOSTSHIP
+	bool "python-enum34-ghostship"
+	help
+	  Python 3.4 Enum backported to 3.3, 3.2, 3.1, 2.7, 2.6, 2.5,
+	  and 2.4.
+
+	  https://bitbucket.org/stoneleaf/enum34

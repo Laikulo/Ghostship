@@ -1,0 +1,9 @@
+config BR2_PACKAGE_PYTHON_INOTIFYSIMPLE
+	bool "python-inotifysimple"
+	# select BR2_PACKAGE_PYTHON_ENUM34 # runtime
+	help
+	  A simple wrapper around inotify. No fancy bells and
+	  whistles, just a literal wrapper with ctypes. Under 100
+	  lines of code!.
+
+	  https://github.com/chrisjbillington/inotify_simple

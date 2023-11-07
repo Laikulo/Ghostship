@@ -1,0 +1,12 @@
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-klipper/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/moonraker/Config.in"
+
+# Generated below here
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-smart-open/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-streaming-form-data/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-preprocess-cancellation/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-msgspec/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-inotifysimple/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-enum34-ghostship/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-libnacl/Config.in"
+source "$BR2_EXTERNAL_ghostship_PATH/package/python-poetry-core/Config.in"

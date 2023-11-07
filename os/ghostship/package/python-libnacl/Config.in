@@ -1,0 +1,4 @@
+config BR2_PACKAGE_PYTHON_LIBNACL
+	bool "python-libnacl"
+	help
+	  libnacl

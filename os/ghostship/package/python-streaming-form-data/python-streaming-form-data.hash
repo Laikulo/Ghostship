@@ -1,0 +1,5 @@
+# md5, sha256 from https://pypi.org/pypi/streaming_form_data/json
+md5  6dcd75f5ba0366323dd99b99b7c7fed9  streaming-form-data-1.13.0.tar.gz
+sha256  34087788c88912caa5b658020d1df66320369a8d98ec3a427dc36fd2618d864f  streaming-form-data-1.13.0.tar.gz
+# Locally computed sha256 checksums
+sha256  d9d2cdd6698ed8bc987f0b694fd7bb5834aadf83345f60c40d7b4fc11fd72cf2  LICENSE.txt

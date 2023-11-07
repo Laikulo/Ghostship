@@ -1,0 +1,12 @@
+config BR2_PACKAGE_PYTHON_KLIPPER
+	bool "python-klipper"
+        select BR2_PACKAGE_PYTHON_CFFI
+        select BR2_PACKAGE_PYTHON_GREENLET
+        select BR2_PACKAGE_PYTHON_SERIAL
+        select BR2_PACKAGE_PYTHON_JINJA2
+        select BR2_PACKAGE_PYTHON_CAN
+	select BR2_PACKAGE_PYTHON_MARKUPSAFE 
+        select BR2_PACKAGE_LIBUSB
+        select BR2_PACKAGE_LIBUSB_COMPAT
+	help
+	  Klipper host daemon

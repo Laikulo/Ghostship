@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_MSGSPEC
+	bool "python-msgspec"
+	help
+	  A fast serialization and validation library, with builtin
+	  support for JSON, MessagePack, YAML, and TOML.
+
+	  https://jcristharif.com/msgspec/

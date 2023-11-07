@@ -1,0 +1,49 @@
+From 77924f1347d773bb3d60f5351045527377489984 Mon Sep 17 00:00:00 2001
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Mon, 26 Jun 2023 23:45:45 -0600
+Subject: [PATCH] Prevent matching bogus parent git directories
+
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+[Upstream status:
+https://github.com/python-poetry/poetry-core/pull/611]
+---
+ src/poetry/core/vcs/__init__.py | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
+
+diff --git a/src/poetry/core/vcs/__init__.py b/src/poetry/core/vcs/__init__.py
+index f4096ec..b4899b3 100644
+--- a/src/poetry/core/vcs/__init__.py
++++ b/src/poetry/core/vcs/__init__.py
+@@ -17,15 +17,22 @@ def get_vcs(directory: Path) -> Git | None:
+     try:
+         from poetry.core.vcs.git import executable
+ 
+-        git_dir = (
+-            subprocess.check_output(
+-                [executable(), "rev-parse", "--show-toplevel"], stderr=subprocess.STDOUT
++        check_ignore = subprocess.run(
++            [executable(), "check-ignore", "."],
++        ).returncode
++
++        if check_ignore == 0:
++            vcs = None
++        else:
++            git_dir = (
++                subprocess.check_output(
++                    [executable(), "rev-parse", "--show-toplevel"], stderr=subprocess.STDOUT
++                )
++                .decode()
++                .strip()
+             )
+-            .decode()
+-            .strip()
+-        )
+ 
+-        vcs = Git(Path(git_dir))
++            vcs = Git(Path(git_dir))
+ 
+     except (subprocess.CalledProcessError, OSError, RuntimeError):
+         vcs = None
+-- 
+2.41.0
+
