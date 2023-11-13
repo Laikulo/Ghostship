@@ -19,8 +19,10 @@ jobs:
           make defconfig DEFCONFIG="$PWD/../pc-buildroot.config"
       - name: Make
         run: |
+          cd os/buildroot
           export BR2_EXTERNAL="$PWD/../ghostship"
           make
       # TODO: Save Cache
+      # TODO: Do something with the result
 
 
