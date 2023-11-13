@@ -13,14 +13,14 @@ jobs:
           submodules: true
       # TODO: Load cache
       - name: Load config
-        run:
-          - cd os/buildroot
-          - export BR2_EXTERNAL="$PWD/../ghostship"
-          - make defconfig DEFCONFIG="$PWD/../pc-buildroot.config"
+        run: |
+          cd os/buildroot
+          export BR2_EXTERNAL="$PWD/../ghostship"
+          make defconfig DEFCONFIG="$PWD/../pc-buildroot.config"
       - name: Make
-        run:
-          - export BR2_EXTERNAL="$PWD/../ghostship"
-          - make
+        run: |
+          export BR2_EXTERNAL="$PWD/../ghostship"
+          make
       # TODO: Save Cache
 
 
