@@ -1,0 +1,26 @@
+name: Build OS Images
+on:
+  workflow_dispatch:
+
+jobs:
+  buildroot:
+    name: Run Buildroot
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: true
+      # TODO: Load cache
+      - name: Load config
+        run:
+          - cd os/buildroot
+          - export BR2_EXTERNAL="$PWD/../ghostship"
+          - make defconfig DEFCONFIG="$PWD/../pc-buildroot.config"
+      - name: Make
+        run:
+          - export BR2_EXTERNAL="$PWD/../ghostship"
+          - make
+      # TODO: Save Cache
+
+
