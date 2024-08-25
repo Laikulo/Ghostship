@@ -1,0 +1,12 @@
+- name: Remove netplan package
+  package:
+    name: netplan
+    state: absent
+- name: Remove netplan confdir
+  file:
+    path: "/etc/netplan/"
+    state: absent
+- name: Rememove systemd-networkd disabler
+  file:
+    path: "/etc/systemd/network/00-armbian-readme.network"
+    state: absent

@@ -1,0 +1,4 @@
+---
+# tasks file for ghostship
+- import_tasks: network.yml
+  when: do_network

@@ -1,0 +1,4 @@
+- import_tasks: network_armbian_cleanup.yml
+  when: network_armbian_cleanup
+
+- import_tasks: "network_{{network_mode}}.yml"

@@ -1,0 +1,74 @@
+- name: Outside network configuration
+  copy:
+    dest: /etc/systemd/network/outside.network
+    content: |
+      [Match]
+      Name={{outside_interface}}
+      Type=ether
+
+      [Link]
+      ActivationPolicy=up
+
+      [Network]
+      {% if not outside_vlan %}
+      DHCP=yes
+      {% endif %}
+      {% if outside_vlan %}
+      VLAN={{outside_interface}}.{{outside_vlan}}
+      {% endif %}
+      {% if printernet_vlan and not printernet_interface %}
+      VLAN={{outside_interface}}.{{printernet_vlan}}
+      {% endif %}
+
+- name: Printernet bridge
+  copy:
+    dest: /etc/systemd/network/printernet.netdev
+    content: |
+      [NetDev]
+      Kind=bridge
+      Name=printernet
+
+- name: Printernet Local interface
+  copy:
+    dest: /etc/systemd/network/printernet.network
+    content: |
+      [Match]
+      Name=printernet
+      Type=bridge
+
+      [Link]
+      ActivationPolicy=always-up
+
+      [Network]
+      Address=10.13.37.1/24
+      ConfigureWithoutCarrrier=yes
+      LinkLocalAddressing=no
+
+- name: Printernet VLAN trunk device
+  when: printernet_vlan
+  copy: 
+    dest: /etc/systemd/network/printernet-trunk.netdev
+    content: |
+      [NetDev]
+      Kind=vlan
+      Name={{printernet_interface or outside_interface}}.{{printernet_vlan}}
+
+      [VLAN]
+      Id={{printernet_vlan}}
+
+- name: Printernet VLAN trunk binding
+  when: printernet_vlan
+  copy:
+    dest: /etc/systemd/network/printernet-trunk.network
+    content: |
+      [Match]
+      Name={{printernet_interface or outside_interface}}.{{printernet_vlan}}
+
+      [Network]
+      Bridge=printernet
+
+- name: Reload networking
+  command: networkctl reload
+
+
+    

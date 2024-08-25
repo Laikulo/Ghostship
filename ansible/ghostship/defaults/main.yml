@@ -1,0 +1,11 @@
+---
+# defaults file for ghostship
+
+do_network: True
+
+network_armbian_cleanup: False
+network_mode: autodetect
+outside_interface: eth0
+outside_vlan: False
+printernet_interface: ~
+printernet_vlan: False
