@@ -1,0 +1,40 @@
+- name: install packages for printernet
+  package:
+    name: '{{item}}'
+    state: present
+  loop:
+    - dnsmasq
+
+- name: tftp directory
+  file:
+    state: directory
+    path: /srv/tftp
+
+- name: extend arp cache on printernet for Pi netboot
+  ansible.posix.sysctl:
+    name: "net.ipv4.neigh.printernet.{{item.attr}}"
+    value: '{{item.val}}'
+    sysctl_set: true
+  loop:
+    - attr: base_reachable_time_ms
+      val: 600000
+    - attr: interval_probe_time_ms
+      val: 300000
+    - attr: gc_stale_time
+      val: 300
+  loop_control:
+    label: '{{item.attr}}'
+
+
+- name: dnsmasq config
+  register: dnsmasq_conf
+  template:
+    src: dnsmasq.conf
+    dest: /etc/dnsmasq.d/printernet.conf
+
+- name: dnsmasq reload
+  service:
+    state: restarted
+    name: dnsmasq
+  when: dnsmasq_conf.changed
+

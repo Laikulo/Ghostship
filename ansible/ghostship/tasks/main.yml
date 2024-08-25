@@ -1,4 +1,6 @@
 ---
 # tasks file for ghostship
-- import_tasks: network.yml
+- include_tasks: network.yml
   when: do_network
+
+- include_tasks: printernet.yml

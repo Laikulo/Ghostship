@@ -20,6 +20,29 @@
       VLAN={{outside_interface}}.{{printernet_vlan}}
       {% endif %}
 
+- name: Outside VLAN device
+  when: outside_vlan
+  copy: 
+    dest: /etc/systemd/network/outside-vlan.netdev
+    content: |
+      [NetDev]
+      Kind=vlan
+      Name={{outside_interface}}.{{outside_vlan}}
+
+      [VLAN]
+      Id={{outside_vlan}}
+
+- name: Outside VLAN network
+  when: outside_vlan
+  copy:
+    dest: /etc/systemd/network/outside-vlan.network
+    content: |
+      [Match]
+      Name={{outside_interface}}.{{outside_vlan}}
+
+      [Network]
+      DHCP=yes
+
 - name: Printernet bridge
   copy:
     dest: /etc/systemd/network/printernet.netdev
