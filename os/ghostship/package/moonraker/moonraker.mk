@@ -11,6 +11,6 @@ MOONRAKER_SETUP_TYPE = setuptools
 MOONRAKER_LICENSE = GPL-3.0
 MOONRAKER_LICENSE_FILES = LICENSE
 
-# MOONRAKER_DEPENDENCIES = host-python-cffi
+MOONRAKER_DEPENDENCIES = host-python-pdm-backend
 
 $(eval $(python-package))
