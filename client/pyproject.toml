@@ -1,0 +1,18 @@
+[build-system]
+requires = [ "setuptools", "setuptools-scm" ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghostship"
+authors = [
+	{ name = "Aaron Haun", email = "aaron@haun.guru" }
+]
+description = "Client for ghostship"
+requires-python = ">=3.7"
+dynamic = [ "version" ]
+
+[project.scripts]
+ghostship = "ghostship.client:run"
+
+[tool.setuptools.packages.find]
+where = [ "src" ]
